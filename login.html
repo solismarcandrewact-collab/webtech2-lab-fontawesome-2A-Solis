@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Login with Spinner</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-light">
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-light bg-opacity-75 d-flex justify-content-center align-items-center">
+    <!-- Spinner (pwede mo palitan icon dito) -->
+    <i class="fa fa-circle-notch fa-spin fa-3x text-success"></i>
+  </div>
+
+  <!-- Login Form -->
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+      <h3 class="text-center mb-4">Login</h3>
+      <form id="loginForm">
+        <!-- Email field -->
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+          <input type="email" class="form-control" placeholder="Email" required>
+        </div>
+        <!-- Username field -->
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-control" placeholder="Username" required>
+        </div>
+        <!-- Password field -->
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="fa fa-lock"></i></span>
+          <input type="password" class="form-control" placeholder="Password" required>
+        </div>
+        <!-- Remember Me checkbox -->
+        <div class="form-check mb-3">
+          <input type="checkbox" class="form-check-input" id="rememberMe">
+          <label class="form-check-label" for="rememberMe">
+            <i class="fa fa-check-square"></i> Remember Me
+          </label>
+        </div>
+        <!-- Login button -->
+        <button type="submit" class="btn btn-success w-100">
+          <i class="fa fa-sign-in-alt"></i> Login
+        </button>
+      </form>
+
+      <!-- Bootstrap alert (hidden muna) -->
+      <div id="loginAlert" class="alert alert-success mt-3 d-none" role="alert">
+        <i class="fa fa-check-circle"></i> Login successful! (simulated)
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const loadingScreen = document.getElementById('loadingScreen');
+    const loginAlert = document.getElementById('loginAlert');
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop page reload
+
+      // Show spinner
+      loadingScreen.classList.remove('d-none');
+      loginAlert.classList.add('d-none');
+
+      // Fake delay (3 seconds)
+      setTimeout(() => {
+        loadingScreen.classList.add('d-none');
+        loginAlert.classList.remove('d-none'); // Show success alert
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
